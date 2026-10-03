@@ -1,19 +1,24 @@
 executable          	= condor.sh
-transfer_output_files   = ""
-notify_user				= anupama.reghunath@physik.hu-berlin.de
-notification 			= Always
+notify_user				= jasmin.weiss@student.hu-berlin.de
+notification 			= Error
+
+# Defaults can be overridden on the command line, e.g. condor_submit condor.sub OUTDIR=/eos/... NFOLDERS=20
+arguments 		= $(MUONBACK_DIR:/eos/user/j/jaweiss/MuonBack/TRY6LiSc/11921562) $(OUTDIR:/eos/user/j/jaweiss/MuonDIS/TRY6LiSc) $(NFOLDERS:0)
 
 ##############################################################################################################
-error 					= /afs/cern.ch/work/a/anupamar/HTCondor_files/error/makentuple.err
-log 					= /afs/cern.ch/work/a/anupamar/HTCondor_files/log/makentuple.log
-output					= /afs/cern.ch/work/a/anupamar/HTCondor_files/output/makentuple.out
+error 					= logs/ntuple_$(Cluster).err
+log 					= logs/ntuple_$(Cluster).log
+output					= logs/ntuple_$(Cluster).out
 ##############################################################################################################
-#request_memory 		= 50 GB	
-#request_disk			= 4 GB
+
+request_CPUs   = 1
+request_memory = 4 GB
+request_disk   = 5 GB
+
 on_exit_remove   		= (ExitBySignal == False) && (ExitCode == 0)
 max_retries      		= 3
-requirements     		= Machine =!= LastRemoteHost 
-
+requirements     		= (OpSysAndVer =?= "AlmaLinux9") && (Machine =!= LastRemoteHost)
++REQUIRED_OS 			= "AlmaLinux9"
 
 ##############################################################################################################
 +JobFlavour="testmatch"

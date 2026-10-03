@@ -1,4 +1,13 @@
 
+# TRY6LiSc setup (jaweiss)
+
+The scripts in this folder are adapted to run MuonDIS on `/eos/user/j/jaweiss/MuonBack/TRY6LiSc/11921562`, output in `/eos/user/j/jaweiss/MuonDIS/TRY6LiSc/{SBT,Tr}/job_<N>/`.
+
+- FairShip: the pixi build TRY6LiSc was produced with (commit `0979da44a`), run from its EOS copy `/eos/user/j/jaweiss/FairShip`; sim with `--shieldName TRY_2026`, helium, LiquidScintillator SBT (default in that build).
+- `fairship_muonDIS/`: the four muonDIS helper scripts from upstream FairShip `d9141f0e` (fixed for ROOT >= 6.32 / 6.40, plus upstream bug fixes, e.g. per-target DIS cross sections), with local changes: `muondis_compat.py` (helper missing in `0979da44a`), strawtube station from `detID // 1e6`, and `add_muonresponse.py` writing `std::vector` point branches (the TClonesArray version segfaults on these sim files).
+- Test: `condor_submit_dag test_TRY6LiSc.dag` (writes to `/eos/user/j/jaweiss/MuonDIS/TRY6LiSc_test`).
+- Production: `condor_submit condor.sub`, then with the muon counts printed at the end of `logs/ntuple_<cluster>.out`: `condor_submit submitscript_SBT.sub NJOBS=<ceil(nSBT/10)>` and `condor_submit submitscript_Tr.sub NJOBS=<nTr>`.
+
 # Condor Scripts to generate MuonDIS simulations using Fairship
 
 These scripts have been used to produce the MuonDIS simulation available within `/eos/experiment/ship/simulation/bkg/MuonDIS_2024helium/8070735`. 

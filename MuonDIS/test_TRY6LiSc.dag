@@ -1,0 +1,13 @@
+# Small end-to-end test of the TRY6LiSc MuonDIS pipeline, written to /eos/user/j/jaweiss/MuonDIS/TRY6LiSc_test:
+#   step 0 on the first 100 TRY6LiSc job folders, then 1 SBT and 1 Tr DIS job (2 muons x 2 DIS / 1 muon x 2 DIS).
+# Submit from this directory with: condor_submit_dag test_TRY6LiSc.dag
+JOB ntuple condor.sub
+VARS ntuple OUTDIR="/eos/user/j/jaweiss/MuonDIS/TRY6LiSc_test_latest" NFOLDERS="500"
+
+JOB sbt submitscript_SBT.sub
+VARS sbt OUTDIR="/eos/user/j/jaweiss/MuonDIS/TRY6LiSc_test_latest" NJOBS="1" MUONS_PER_JOB="2" DIS_PER_MUON="2"
+
+JOB tr submitscript_Tr.sub
+VARS tr OUTDIR="/eos/user/j/jaweiss/MuonDIS/TRY6LiSc_test_latest" NJOBS="1" MUONS_PER_JOB="1" DIS_PER_MUON="2"
+
+PARENT ntuple CHILD sbt tr

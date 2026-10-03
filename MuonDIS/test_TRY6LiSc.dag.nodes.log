@@ -1,0 +1,11 @@
+000 (12877807.000.000) 10/03 19:12:18 Job submitted from host: <188.185.70.244:9618?addrs=188.185.70.244-9618+[2001-1458-d00-7--100-2ee]-9618&alias=bigbird10.cern.ch&noUDP&sock=schedd_1577350_7ae9>
+    [ DAGNodeName = "ntuple"; JobBatchName = "test_TRY6LiSc.dag+12877785" ]
+...
+001 (12877807.000.000) 10/03 19:13:00 Job executing on host: <128.142.162.109:9618?addrs=128.142.162.109-9618+[2001-1458-301-7d--100-26]-9618&alias=b9g42p2009.cern.ch&noUDP&sock=startd_3467_a6f0>
+	SlotName: slot1_6@b9g42p2009.cern.ch
+	CondorScratchDir = "/pool/condor/dir_1248565"
+	Cpus = 2
+	Disk = 5245669
+	GPUs = 0
+	Memory = 6000
+...

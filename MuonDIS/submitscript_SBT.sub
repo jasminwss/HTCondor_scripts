@@ -1,22 +1,31 @@
 executable          	= submitscript.sh
-transfer_output_files 	= ""
-notify_user				= anupama.reghunath@hu-berlin.de
+notify_user				= jasmin.weiss@student.hu-berlin.de
 notification 			= Error
 
-arguments 		= /eos/experiment/ship/simulation/bkg/MuonDIS_2024helium/8070735/SBT /eos/experiment/ship/simulation/bkg/MuonDIS_2024helium/8070735/muonsProduction_wsoft_SBT_1spill_8070735.root $(Process) 10 100
+# Defaults can be overridden on the command line, e.g. condor_submit submitscript_SBT.sub NJOBS=620
+# NJOBS * MUONS_PER_JOB >= number of muons in muonsProduction_wsoft_SBT.root (printed at the end of step 0)
+DIS_BASE        = $(OUTDIR:/eos/user/j/jaweiss/MuonDIS/TRY6LiSc)
+arguments 		= $(DIS_BASE)/SBT $(DIS_BASE)/muonsProduction_wsoft_SBT.root $(Process) $(MUONS_PER_JOB:10) $(DIS_PER_MUON:100)
 
 ##############################################################################################################
-error 					= /afs/cern.ch/work/a/anupamar/HTCondor_files/error/muondisSBT_$(Process).err
-log 					= /afs/cern.ch/work/a/anupamar/HTCondor_files/log/muondisSBT_$(Process).log
-output					= /afs/cern.ch/work/a/anupamar/HTCondor_files/output/muondisSBT_$(Process).out
+error 					= logs/muondisSBT_$(Cluster)_$(Process).err
+log 					= logs/muondisSBT_$(Cluster).log
+output					= logs/muondisSBT_$(Cluster)_$(Process).out
 ##############################################################################################################
+
+request_CPUs   = 1
+request_memory = 4 GB
+request_disk   = 5 GB
 
 on_exit_remove   		= (ExitBySignal == False) && (ExitCode == 0)
 max_retries      		= 3
-requirements     		= Machine =!= LastRemoteHost 
+requirements     		= (OpSysAndVer =?= "AlmaLinux9") && (Machine =!= LastRemoteHost)
++REQUIRED_OS 			= "AlmaLinux9"
+
+# caps how many jobs run at once, so the AFS-hosted pixi binary/scripts are not hit by hundreds of jobs simultaneously
+max_materialize = 200
 
 ##############################################################################################################
-+MaxRuntime = 8000000
++JobFlavour = "tomorrow"
 ##############################################################################################################
-queue 442
-#queue*number of muons per job >= number of muons in tne sim file(4411)
+queue $(NJOBS)

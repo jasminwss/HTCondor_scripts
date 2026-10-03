@@ -7,7 +7,7 @@ nEvents=$4
 ProcId=$5
 ClusterId=$6
 
-source /cvmfs/ship.cern.ch/24.10/setUp.sh 
+source /cvmfs/ship.cern.ch/25.01/setUp.sh #/cvmfs/ship.cern.ch/24.10/setUp.sh 
 source /afs/cern.ch/user/a/areghuna/config_ECN3_2024.sh #alienv load FairShip/latest-master-release > config_<version>.sh
 
 echo 'config sourced'

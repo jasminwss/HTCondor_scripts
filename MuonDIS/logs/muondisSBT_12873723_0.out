@@ -1,0 +1,558 @@
+Using FAIRSHIP=/eos/user/j/jaweiss/FairShip_latest (pixi env)
+/eos/user/j/jaweiss/MuonDIS/TRY6LiSc_test_latest/muonsProduction_wsoft_SBT.root: 85 muons, this job: muons 0 - 1, 2 DIS each
+
+ Step 1/3: Generating DIS (Pythia6) for muons hitting the SBT / Tracking Station 1
+==============================================================
+
+ Step 2/3: MuonDIS simulation using run_simScript.py + adding the incoming muon's SBT/UBT hits
+==============================================================
+[INFO] Media file used: /eos/home-j/jaweiss/FairShip_latest/geometry/media.geo
+[WARN] Multiple input files not implemented for this generator - only taking the first!
+[INFO] Opening input file muonDis.root
+[INFO] MuDISGenerator: Initialization successful.
+[INFO] FairRootFileSink initialized.
+[INFO]  - cbmroot
+[INFO]     - ./sim_SBT_0.root
+[INFO] ==============  FairRunSim: Initialising simulation run ==============
+[INFO] FairGeoMedia: Read media 
+
+************************************************************* 
+     initialisation for run id 1791045443
+************************************************************* 
+[WARN] FairGenericVMCConfig::Setup() Using gConfig.C macro DEPRACATED.
+[WARN] Check FairRoot/examples/common/gconfig/ for current YAML implementation.
+[INFO] ---------------User config is used: g4Config.C
+[INFO] ---User path for Configuration (g4Config.C) is used: /eos/home-j/jaweiss/FairShip_latest/gconfig
+[INFO] ---User path for Cuts and Processes (SetCuts.C) is used: /eos/home-j/jaweiss/FairShip_latest/gconfig
+
+=============================================================
+ Virtual Monte Carlo Library
+ Version 2.2 ( 22 April 2026 )
+=============================================================
+
+=============================================================
+ Geant4 Virtual Monte Carlo 
+ Version 6.8 ( 2 February 2026 )
+ WWW : http://root.cern.ch/drupal/content/geant4-vmc
+=============================================================
+
+Running TVirtualMCApplication::ConstructGeometry
+[INFO] -- Target cooler: PressurisedHe90 T=363.15 K, P=9.98641e+09 MeV/mm3, Density=0.002121
+[INFO] veto: Decay Volume medium set as: helium
+ Z Position (Upstream Tagger1) 3272
+[INFO] TGeometry will be imported to VMC
+
+isMaster=1
+
+**************************************************************
+ Geant4 version Name: geant4-11-04-patch-02 [MT]   (12-June-2026)
+                       Copyright : Geant4 Collaboration
+                      References : NIM A 506 (2003), 250-303
+                                 : IEEE-TNS 53 (2006), 270-278
+                                 : NIM A 835 (2016), 186-225
+                             WWW : http://geant4.org/
+**************************************************************
+
+===> GEANT4 materials created and mapped to TGeo ones...
+===> GEANT4 physical volumes created and mapped to TGeo hierarchy...
+### INFO: TG4RootDetectorConstruction::Construct() finished
+TG4PostDetConstruction::Initialize
+G4 Stat: instantiated 698 logical volumes 
+                      46009 physical volumes
+Adding HadronPhysicsList FTFP_BERT_HP_EMZ
+G4PhysListFactory::GetReferencePhysList <FTFP_BERT_HP_EMZ>
+<<< Geant4 Physics List simulation engine: FTFP_BERT_HP
+
+G4VModularPhysicsList::ReplacePhysics: G4EmStandard with type : 2 is replaced with G4EmStandard_opt4
+
+Adding SpecialPhysicsList stepLimiter+specialCuts+
+### TG4SpecialControlsV2 constructed
+Visualization Manager instantiating with verbosity "warnings (3)"...
+ -I g4Config() using g4conf  macro: /eos/home-j/jaweiss/FairShip_latest/gconfig/g4config.in
+SetCuts Macro: Setting Processes..
+SetCuts Macro: Setting cuts..
+TG4RootDetectorConstruction::ConstructSDandField
+TG4PostDetConstruction::InitializeSDandField
+[INFO] FairMCApplication::InitGeometry: 0
+[INFO] Simulation RunID: 1791045443
+[INFO] CREATING BRANCH MCTrack
+[INFO] Creating branch for MCTrack with address 0x5600ac3c55a8
+[INFO] CREATING BRANCH TimeDetPoint
+[INFO] Creating branch for TimeDetPoint with address 0x5600a2f8e0b8
+[INFO] CREATING BRANCH UpstreamTaggerPoint
+[INFO] Creating branch for UpstreamTaggerPoint with address 0x5600a6f1f078
+[INFO] CREATING BRANCH splitcalPoint
+[INFO] Creating branch for splitcalPoint with address 0x56009ed16aa8
+[INFO] CREATING BRANCH strawtubesPoint
+[INFO] Creating branch for strawtubesPoint with address 0x5600a6dbdcb8
+[INFO] CREATING BRANCH vetoPoint
+[INFO] Creating branch for vetoPoint with address 0x5600a6a73e28
+Global field created with stepper DormandPrince745
+### INFO: TG4RootDetectorConstruction::ConstructSDandField finished
+
+ hInelastic FTFP_BERT_HP : threshold between BERT and FTFP is over the interval 
+ for pions :   3 to 6 GeV
+ for kaons :   3 to 6 GeV
+ for proton :  3 to 6 GeV
+ for neutron : 3 to 6 GeV
+
+@@@ G4ParticleHPInelasticData instantiated for particle neutron data directory variable is G4NEUTRONHPDATA pointing to /eos/home-j/jaweiss/FairShip_latest/.pixi/envs/default/share/Geant4/data/NDL4.7.1
+NeutronHP: /Capture file for Z = 18, A = 36 is not found and NeutronHP will use /eos/home-j/jaweiss/FairShip_latest/.pixi/envs/default/share/Geant4/data/NDL4.7.1/Capture/CrossSection/18_37_Argon
+NeutronHP: /Elastic file for Z = 18, A = 36 is not found and NeutronHP will use /eos/home-j/jaweiss/FairShip_latest/.pixi/envs/default/share/Geant4/data/NDL4.7.1/Elastic/CrossSection/18_37_Argon
+NeutronHP: /Inelastic file for Z = 18, A = 36 is not found and NeutronHP will use /eos/home-j/jaweiss/FairShip_latest/.pixi/envs/default/share/Geant4/data/NDL4.7.1/Inelastic/CrossSection/18_37_Argon
+NeutronHP: /Capture file for Z = 18, A = 38 is not found and NeutronHP will use /eos/home-j/jaweiss/FairShip_latest/.pixi/envs/default/share/Geant4/data/NDL4.7.1/Capture/CrossSection/18_39_Argon
+NeutronHP: /Elastic file for Z = 18, A = 38 is not found and NeutronHP will use /eos/home-j/jaweiss/FairShip_latest/.pixi/envs/default/share/Geant4/data/NDL4.7.1/Elastic/CrossSection/18_39_Argon
+NeutronHP: /Inelastic file for Z = 18, A = 38 is not found and NeutronHP will use /eos/home-j/jaweiss/FairShip_latest/.pixi/envs/default/share/Geant4/data/NDL4.7.1/Inelastic/CrossSection/18_39_Argon
+NeutronHP: /Capture file for Z = 73, A = 180 is not found and NeutronHP will use /eos/home-j/jaweiss/FairShip_latest/.pixi/envs/default/share/Geant4/data/NDL4.7.1/Capture/CrossSection/73_181_Tantalum
+NeutronHP: /Elastic file for Z = 73, A = 180 is not found and NeutronHP will use /eos/home-j/jaweiss/FairShip_latest/.pixi/envs/default/share/Geant4/data/NDL4.7.1/Elastic/CrossSection/73_181_Tantalum
+NeutronHP: /Inelastic file for Z = 73, A = 180 is not found and NeutronHP will use /eos/home-j/jaweiss/FairShip_latest/.pixi/envs/default/share/Geant4/data/NDL4.7.1/Inelastic/CrossSection/73_181_Tantalum
+NeutronHP: /Capture file for Z = 18, A = 36 is not found and NeutronHP will use /eos/home-j/jaweiss/FairShip_latest/.pixi/envs/default/share/Geant4/data/NDL4.7.1/Capture/CrossSection/18_37_Argon
+NeutronHP: /Elastic file for Z = 18, A = 36 is not found and NeutronHP will use /eos/home-j/jaweiss/FairShip_latest/.pixi/envs/default/share/Geant4/data/NDL4.7.1/Elastic/CrossSection/18_37_Argon
+NeutronHP: /Inelastic file for Z = 18, A = 36 is not found and NeutronHP will use /eos/home-j/jaweiss/FairShip_latest/.pixi/envs/default/share/Geant4/data/NDL4.7.1/Inelastic/CrossSection/18_37_Argon
+NeutronHP: /Capture file for Z = 18, A = 38 is not found and NeutronHP will use /eos/home-j/jaweiss/FairShip_latest/.pixi/envs/default/share/Geant4/data/NDL4.7.1/Capture/CrossSection/18_39_Argon
+NeutronHP: /Elastic file for Z = 18, A = 38 is not found and NeutronHP will use /eos/home-j/jaweiss/FairShip_latest/.pixi/envs/default/share/Geant4/data/NDL4.7.1/Elastic/CrossSection/18_39_Argon
+NeutronHP: /Inelastic file for Z = 18, A = 38 is not found and NeutronHP will use /eos/home-j/jaweiss/FairShip_latest/.pixi/envs/default/share/Geant4/data/NDL4.7.1/Inelastic/CrossSection/18_39_Argon
+TG4ComposedPhysicsList::ConstructProcess done
+Available UI session types: [ Qt, tcsh, csh ]
+
+**********************************************
+    GEANT4 Geometry statistics: 
+            698 logical volumes
+          46009 physical volumes
+             24 materials
+             22 user limits
+            691 sensitive detectors
+**********************************************
+
+[INFO] Monte Carlo Engine Initialisation with: TGeant4
+[INFO] FairGenericVMCConfig::SetupPostInit() OFF.
+Creating field map called MainSpecMap using /eos/home-j/jaweiss/FairShip_latest/files/2026_09_28_SHiP_SpectrometerField_ECN3_MgB2.root
+[INFO] ShipBFieldMap::readMapFile() creating field MainSpecMap using file /eos/home-j/jaweiss/FairShip_latest/files/2026_09_28_SHiP_SpectrometerField_ECN3_MgB2.root
+[INFO] x limits: -500, 500, dx = 10
+[INFO] y limits: -500, 500, dy = 10
+[INFO] z limits: -750, 750, dz = 10
+[INFO] Offsets: x = 0, y = 0, z = 8957
+[INFO] Angles : phi = 0, theta = 0, psi = 0
+[INFO] Total number of bins = 1540351; Nx = 101, Ny = 101, Nz = 151
+Creating symmetric field map called muonShieldField using /eos/home-j/jaweiss/FairShip_latest/files/TRY_2026.root
+[INFO] ShipBFieldMap::readMapFile() creating field muonShieldField using file /eos/home-j/jaweiss/FairShip_latest/files/TRY_2026.root
+[INFO] x limits: 0, 219.922, dx = 1.99929
+[INFO] y limits: 0, 217.969, dy = 1.99971
+[INFO] z limits: -50, 3075, dz = 5
+[INFO] Offsets: x = 0, y = 0, z = 204
+[INFO] Angles : phi = 0, theta = 0, psi = 0
+[INFO] Total number of bins = 7643460; Nx = 111, Ny = 110, Nz = 626
+Adding field MainSpecMap
+Adding field muonShieldField
+Setting the Global field
+Adding field TotalField to Global
+[INFO] FairMCApplication::InitGeometry: 0
+ G4ChordFinder: stepperDriverId: 2
+
+GammaToMuPair:  gamma->mu+mu- Bethe Heitler process, SubType= 15
+        good cross section parametrization from 211.317 MeV to 1e+12 GeV for all Z.
+        cross section factor: 1
+
+AnnihiToMuPair:  e+e->mu+mu- annihilation, atomic e- at rest, SubType=6
+        threshold at 43.6931 GeV good description up to 1000 TeV for all Z.
+
+AnnihiToTauPair:  e+e->tau+tau- annihilation, atomic e- at rest, SubType=18
+        threshold at 12357.1 GeV good description up to 1000 TeV for all Z.
+======================================================================
+======          Radioactive Decay Physics Parameters           =======
+======================================================================
+min MeanLife (from G4NuclideTable)                1 ns 
+Max life time (from G4DeexPrecoParameters)        1000 ps 
+Internal e- conversion flag                       1
+Stored internal conversion coefficients           1
+Enabled atomic relaxation mode                    1
+Enable correlated gamma emission                  0
+Max 2J for sampling of angular correlations       10
+Atomic de-excitation enabled                      1
+Auger electron emission enabled                   1
+Check EM cuts disabled for atomic de-excitation   1
+Use Bearden atomic level energies                 0
+Use ANSTO fluorescence model                      0
+Threshold for very long decay time at rest        1 y  
+======================================================================
+NeutronHP: /Capture file for Z = 18, A = 36 is not found and NeutronHP will use /eos/home-j/jaweiss/FairShip_latest/.pixi/envs/default/share/Geant4/data/NDL4.7.1/Capture/CrossSection/18_37_Argon
+NeutronHP: /Elastic file for Z = 18, A = 36 is not found and NeutronHP will use /eos/home-j/jaweiss/FairShip_latest/.pixi/envs/default/share/Geant4/data/NDL4.7.1/Elastic/CrossSection/18_37_Argon
+NeutronHP: /Inelastic file for Z = 18, A = 36 is not found and NeutronHP will use /eos/home-j/jaweiss/FairShip_latest/.pixi/envs/default/share/Geant4/data/NDL4.7.1/Inelastic/CrossSection/18_37_Argon
+NeutronHP: /Capture file for Z = 18, A = 38 is not found and NeutronHP will use /eos/home-j/jaweiss/FairShip_latest/.pixi/envs/default/share/Geant4/data/NDL4.7.1/Capture/CrossSection/18_39_Argon
+NeutronHP: /Elastic file for Z = 18, A = 38 is not found and NeutronHP will use /eos/home-j/jaweiss/FairShip_latest/.pixi/envs/default/share/Geant4/data/NDL4.7.1/Elastic/CrossSection/18_39_Argon
+NeutronHP: /Inelastic file for Z = 18, A = 38 is not found and NeutronHP will use /eos/home-j/jaweiss/FairShip_latest/.pixi/envs/default/share/Geant4/data/NDL4.7.1/Inelastic/CrossSection/18_39_Argon
+NeutronHP: /Capture file for Z = 73, A = 180 is not found and NeutronHP will use /eos/home-j/jaweiss/FairShip_latest/.pixi/envs/default/share/Geant4/data/NDL4.7.1/Capture/CrossSection/73_181_Tantalum
+NeutronHP: /Elastic file for Z = 73, A = 180 is not found and NeutronHP will use /eos/home-j/jaweiss/FairShip_latest/.pixi/envs/default/share/Geant4/data/NDL4.7.1/Elastic/CrossSection/73_181_Tantalum
+NeutronHP: /Inelastic file for Z = 73, A = 180 is not found and NeutronHP will use /eos/home-j/jaweiss/FairShip_latest/.pixi/envs/default/share/Geant4/data/NDL4.7.1/Inelastic/CrossSection/73_181_Tantalum
+NeutronHP: /Capture file for Z = 18, A = 36 is not found and NeutronHP will use /eos/home-j/jaweiss/FairShip_latest/.pixi/envs/default/share/Geant4/data/NDL4.7.1/Capture/CrossSection/18_37_Argon
+NeutronHP: /Elastic file for Z = 18, A = 36 is not found and NeutronHP will use /eos/home-j/jaweiss/FairShip_latest/.pixi/envs/default/share/Geant4/data/NDL4.7.1/Elastic/CrossSection/18_37_Argon
+NeutronHP: /Inelastic file for Z = 18, A = 36 is not found and NeutronHP will use /eos/home-j/jaweiss/FairShip_latest/.pixi/envs/default/share/Geant4/data/NDL4.7.1/Inelastic/CrossSection/18_37_Argon
+NeutronHP: /Capture file for Z = 18, A = 38 is not found and NeutronHP will use /eos/home-j/jaweiss/FairShip_latest/.pixi/envs/default/share/Geant4/data/NDL4.7.1/Capture/CrossSection/18_39_Argon
+NeutronHP: /Elastic file for Z = 18, A = 38 is not found and NeutronHP will use /eos/home-j/jaweiss/FairShip_latest/.pixi/envs/default/share/Geant4/data/NDL4.7.1/Elastic/CrossSection/18_39_Argon
+NeutronHP: /Inelastic file for Z = 18, A = 38 is not found and NeutronHP will use /eos/home-j/jaweiss/FairShip_latest/.pixi/envs/default/share/Geant4/data/NDL4.7.1/Inelastic/CrossSection/18_39_Argon
+NeutronHP: /Elastic file for Z = 18, A = 36 is not found and NeutronHP will use /eos/home-j/jaweiss/FairShip_latest/.pixi/envs/default/share/Geant4/data/NDL4.7.1/Elastic/CrossSection/18_37_Argon
+NeutronHP: /Elastic file for Z = 18, A = 38 is not found and NeutronHP will use /eos/home-j/jaweiss/FairShip_latest/.pixi/envs/default/share/Geant4/data/NDL4.7.1/Elastic/CrossSection/18_39_Argon
+NeutronHP: /Elastic file for Z = 73, A = 180 is not found and NeutronHP will use /eos/home-j/jaweiss/FairShip_latest/.pixi/envs/default/share/Geant4/data/NDL4.7.1/Elastic/CrossSection/73_181_Tantalum
+NeutronHP: /Elastic file for Z = 18, A = 36 is not found and NeutronHP will use /eos/home-j/jaweiss/FairShip_latest/.pixi/envs/default/share/Geant4/data/NDL4.7.1/Elastic/CrossSection/18_37_Argon
+NeutronHP: /Elastic file for Z = 18, A = 38 is not found and NeutronHP will use /eos/home-j/jaweiss/FairShip_latest/.pixi/envs/default/share/Geant4/data/NDL4.7.1/Elastic/CrossSection/18_39_Argon
+
+=======================================================
+======       ParticleHP Physics Parameters     ========
+=======================================================
+ Use only photo-evaporation      0
+ Skip missing isotopes           0
+ Neglect Doppler                 0
+ Do not adjust final state       0
+ Produce fission fragments       0
+ Use WendtFissionModel           0
+ Use NRESP71Model                0
+ Use DBRC                        0
+ PHP use Poisson                 0
+ PHP check                       1
+ CHECK HP NAMES                  0
+ Enable DEBUG                    0
+ Use probability tables from     
+=======================================================
+
+@@@ G4ParticleHPInelastic instantiated for particle neutron/n    data directory is /eos/home-j/jaweiss/FairShip_latest/.pixi/envs/default/share/Geant4/data/NDL4.7.1/Inelastic
+
+====================================================================
+                  HADRONIC PROCESSES SUMMARY (verbose level 1)
+-----------------------------------------------------------------------
+                           Hadronic Processes for B-
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+  Process: B-Inelastic
+        Model:                      FTFP: 0 eV  ---> 100 TeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+-----------------------------------------------------------------------
+                           Hadronic Processes for D-
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+  Process: D-Inelastic
+        Model:                      FTFP: 0 eV  ---> 100 TeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+-----------------------------------------------------------------------
+                           Hadronic Processes for GenericIon
+  Process: ionInelastic
+        Model:  Binary Light Ion Cascade: 0 eV /n ---> 6 GeV/n
+        Model:                      FTFP: 3 GeV/n ---> 100 TeV/n
+     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 25.6 PeV
+  Process: RadioactiveDecay
+-----------------------------------------------------------------------
+                           Hadronic Processes for He3
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV /n ---> 100 TeV/n
+     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 25.6 PeV
+  Process: He3Inelastic
+        Model:  Binary Light Ion Cascade: 0 eV /n ---> 6 GeV/n
+        Model:                      FTFP: 3 GeV/n ---> 100 TeV/n
+     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 25.6 PeV
+-----------------------------------------------------------------------
+                           Hadronic Processes for alpha
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV /n ---> 100 TeV/n
+     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 25.6 PeV
+  Process: alphaInelastic
+        Model:  Binary Light Ion Cascade: 0 eV /n ---> 6 GeV/n
+        Model:                      FTFP: 3 GeV/n ---> 100 TeV/n
+     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 25.6 PeV
+-----------------------------------------------------------------------
+                           Hadronic Processes for anti_He3
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV /n ---> 100.1 MeV/n
+        Model:              AntiAElastic: 100 MeV/n ---> 100 TeV/n
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 25.6 PeV
+  Process: anti_He3Inelastic
+        Model:                      FTFP: 0 eV /n ---> 100 TeV/n
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 25.6 PeV
+  Process: hFritiofCaptureAtRest
+-----------------------------------------------------------------------
+                           Hadronic Processes for anti_alpha
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV /n ---> 100.1 MeV/n
+        Model:              AntiAElastic: 100 MeV/n ---> 100 TeV/n
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 25.6 PeV
+  Process: anti_alphaInelastic
+        Model:                      FTFP: 0 eV /n ---> 100 TeV/n
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 25.6 PeV
+  Process: hFritiofCaptureAtRest
+-----------------------------------------------------------------------
+                           Hadronic Processes for anti_deuteron
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV /n ---> 100.1 MeV/n
+        Model:              AntiAElastic: 100 MeV/n ---> 100 TeV/n
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 25.6 PeV
+  Process: anti_deuteronInelastic
+        Model:                      FTFP: 0 eV /n ---> 100 TeV/n
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 25.6 PeV
+  Process: hFritiofCaptureAtRest
+-------------------------------------------------------------------------
+                           Hadronic Processes for anti_hypertriton
+  Process: hFritiofCaptureAtRest
+-----------------------------------------------------------------------
+                           Hadronic Processes for anti_lambda
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+  Process: anti_lambdaInelastic
+        Model:                      FTFP: 0 eV  ---> 100 TeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+  Process: hFritiofCaptureAtRest
+-----------------------------------------------------------------------
+                           Hadronic Processes for anti_neutron
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100.1 MeV
+        Model:              AntiAElastic: 100 MeV ---> 100 TeV
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 25.6 PeV
+  Process: anti_neutronInelastic
+        Model:                      FTFP: 0 eV  ---> 100 TeV
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 25.6 PeV
+  Process: hFritiofCaptureAtRest
+-----------------------------------------------------------------------
+                           Hadronic Processes for anti_proton
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100.1 MeV
+        Model:              AntiAElastic: 100 MeV ---> 100 TeV
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 25.6 PeV
+  Process: anti_protonInelastic
+        Model:                      FTFP: 0 eV  ---> 100 TeV
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 25.6 PeV
+  Process: hFritiofCaptureAtRest
+-----------------------------------------------------------------------
+                           Hadronic Processes for anti_triton
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV /n ---> 100.1 MeV/n
+        Model:              AntiAElastic: 100 MeV/n ---> 100 TeV/n
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 25.6 PeV
+  Process: anti_tritonInelastic
+        Model:                      FTFP: 0 eV /n ---> 100 TeV/n
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 25.6 PeV
+  Process: hFritiofCaptureAtRest
+-----------------------------------------------------------------------
+                           Hadronic Processes for deuteron
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV /n ---> 100 TeV/n
+     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 25.6 PeV
+  Process: dInelastic
+        Model:  Binary Light Ion Cascade: 0 eV /n ---> 6 GeV/n
+        Model:                      FTFP: 3 GeV/n ---> 100 TeV/n
+     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 25.6 PeV
+-----------------------------------------------------------------------
+                           Hadronic Processes for e+
+  Process: positronNuclear
+        Model:   G4ElectroVDNuclearModel: 0 eV  ---> 1 PeV
+     Cr_sctns:          ElectroNuclearXS: 0 eV  ---> 100 TeV
+-----------------------------------------------------------------------
+                           Hadronic Processes for e-
+  Process: electronNuclear
+        Model:   G4ElectroVDNuclearModel: 0 eV  ---> 1 PeV
+     Cr_sctns:          ElectroNuclearXS: 0 eV  ---> 100 TeV
+-----------------------------------------------------------------------
+                           Hadronic Processes for kaon+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+  Process: kaon+Inelastic
+        Model:                      FTFP: 3 GeV ---> 100 TeV
+        Model:            BertiniCascade: 0 eV  ---> 6 GeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+-----------------------------------------------------------------------
+                           Hadronic Processes for kaon-
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+  Process: kaon-Inelastic
+        Model:                      FTFP: 3 GeV ---> 100 TeV
+        Model:            BertiniCascade: 0 eV  ---> 6 GeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+  Process: hBertiniCaptureAtRest
+-----------------------------------------------------------------------
+                           Hadronic Processes for lambda
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+  Process: lambdaInelastic
+        Model:                      FTFP: 3 GeV ---> 100 TeV
+        Model:            BertiniCascade: 0 eV  ---> 6 GeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+-----------------------------------------------------------------------
+                           Hadronic Processes for mu+
+  Process: muonNuclear
+        Model:      G4MuonVDNuclearModel: 0 eV  ---> 1 PeV
+     Cr_sctns:     KokoulinMuonNuclearXS: 0 eV  ---> 100 TeV
+-----------------------------------------------------------------------
+                           Hadronic Processes for mu-
+  Process: muonNuclear
+        Model:      G4MuonVDNuclearModel: 0 eV  ---> 1 PeV
+     Cr_sctns:     KokoulinMuonNuclearXS: 0 eV  ---> 100 TeV
+  Process: muMinusCaptureAtRest
+-----------------------------------------------------------------------
+                           Hadronic Processes for neutron
+  Process: hadElastic
+        Model:             hElasticCHIPS: 19.5 MeV ---> 100 TeV
+        Model:          NeutronHPElastic: 0 eV  ---> 20 MeV
+     Cr_sctns:        NeutronHPElasticXS: 0 eV  ---> 20 MeV
+     Cr_sctns:        G4NeutronElasticXS: 0 eV  ---> 100 TeV
+  Process: neutronInelastic
+        Model:                      FTFP: 3 GeV ---> 100 TeV
+        Model:            BertiniCascade: 19.9 MeV ---> 6 GeV
+        Model:        NeutronHPInelastic: 0 eV  ---> 20 MeV
+     Cr_sctns:      NeutronHPInelasticXS: 0 eV  ---> 20 MeV
+     Cr_sctns:      G4NeutronInelasticXS: 0 eV  ---> 100 TeV
+  Process: nCapture
+        Model:             nRadCaptureHP: 0 eV  ---> 20 MeV
+        Model:               nRadCapture: 19.9 MeV ---> 100 TeV
+     Cr_sctns:        NeutronHPCaptureXS: 0 eV  ---> 100 TeV
+     Cr_sctns:        G4NeutronCaptureXS: 0 eV  ---> 100 TeV
+  Process: nFission
+        Model:          NeutronHPFission: 0 eV  ---> 20 MeV
+        Model:                G4LFission: 19.9 MeV ---> 100 TeV
+     Cr_sctns:        NeutronHPFissionXS: 0 eV  ---> 20 MeV
+     Cr_sctns:                    ZeroXS: 0 eV  ---> 100 TeV
+-----------------------------------------------------------------------
+                           Hadronic Processes for pi+
+  Process: hadElastic
+        Model:           hElasticGlauber: 0 eV  ---> 100 TeV
+     Cr_sctns:  BarashenkovGlauberGribov: 0 eV  ---> 100 TeV
+  Process: pi+Inelastic
+        Model:                      FTFP: 3 GeV ---> 100 TeV
+        Model:            BertiniCascade: 0 eV  ---> 6 GeV
+     Cr_sctns:  BarashenkovGlauberGribov: 0 eV  ---> 100 TeV
+-----------------------------------------------------------------------
+                           Hadronic Processes for pi-
+  Process: hadElastic
+        Model:           hElasticGlauber: 0 eV  ---> 100 TeV
+     Cr_sctns:  BarashenkovGlauberGribov: 0 eV  ---> 100 TeV
+  Process: pi-Inelastic
+        Model:                      FTFP: 3 GeV ---> 100 TeV
+        Model:            BertiniCascade: 0 eV  ---> 6 GeV
+     Cr_sctns:  BarashenkovGlauberGribov: 0 eV  ---> 100 TeV
+  Process: hBertiniCaptureAtRest
+-----------------------------------------------------------------------
+                           Hadronic Processes for proton
+  Process: hadElastic
+        Model:             hElasticCHIPS: 0 eV  ---> 100 TeV
+     Cr_sctns:  BarashenkovGlauberGribov: 0 eV  ---> 100 TeV
+  Process: protonInelastic
+        Model:                      FTFP: 3 GeV ---> 100 TeV
+        Model:            BertiniCascade: 0 eV  ---> 6 GeV
+     Cr_sctns:  BarashenkovGlauberGribov: 0 eV  ---> 100 TeV
+-----------------------------------------------------------------------
+                           Hadronic Processes for sigma-
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+  Process: sigma-Inelastic
+        Model:                      FTFP: 3 GeV ---> 100 TeV
+        Model:            BertiniCascade: 0 eV  ---> 6 GeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+  Process: hBertiniCaptureAtRest
+-----------------------------------------------------------------------
+                           Hadronic Processes for triton
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV /n ---> 100 TeV/n
+     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 25.6 PeV
+  Process: tInelastic
+        Model:  Binary Light Ion Cascade: 0 eV /n ---> 6 GeV/n
+        Model:                      FTFP: 3 GeV/n ---> 100 TeV/n
+     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 25.6 PeV
+  Process: RadioactiveDecay
+=======================================================================
+======       Geant4 Native Pre-compound Model Parameters       ========
+=======================================================================
+Type of pre-compound model                          0
+Type of pre-compound inverse x-section              1
+Pre-compound model active                           1
+Pre-compound excitation low energy                  0.1 MeV 
+Pre-compound excitation high energy                 15 MeV 
+Angular generator for pre-compound model            1
+Use NeverGoBack option for pre-compound model       0
+Use SoftCutOff option for pre-compound model        0
+Use CEM transitions for pre-compound model          1
+Use GNASH transitions for pre-compound model        0
+Use HETC submodel for pre-compound model            0
+=======================================================================
+======       Nuclear De-excitation Module Parameters           ========
+=======================================================================
+Type of de-excitation inverse x-section             3
+Type of de-excitation factory                       Evaporation+GEM
+Number of de-excitation channels                    68
+Type of Fermi BreakUp model                         ModelVI
+Min excitation energy                               0.01 keV 
+Min energy per nucleon for multifragmentation       2e+05 MeV
+Level density (1/MeV)                               0.075
+Use simple level density model                      1
+Use discrete excitation energy of the residual      0
+Time limit for long lived isomeres                  1 ns 
+Isomer production flag                              1
+Internal e- conversion flag                         1
+Store e- internal conversion data                   1
+Correlated gamma emission flag                      0
+Max 2J for sampling of angular correlations         10
+=======================================================================
+[INFO] ***  FairBaseParSet written to ROOT file   version: 1
+[INFO] ***  FairGeoParSet written to ROOT file   version: 1
+Info: Target using configuration: /eos/home-j/jaweiss/FairShip_latest/geometry/target_config.yaml
+['tungsten', 'tungsten', 'tungsten', 'tungsten', 'tungsten', 'tungsten', 'tungsten', 'tungsten', 'tungsten', 'tungsten', 'tungsten', 'tungsten', 'tungsten', 'tungsten', 'tungsten', 'tungsten', 'tungsten', 'tungsten', 'tungsten'] [4.5, 1.8, 1.7, 1.7, 1.8, 1.9, 2.1, 1.9, 2.1, 2.4, 2.8, 3.3, 4.1, 5.6, 8.8, 17.2, 28.7, 28.8, 28.8] [0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.48, 0.5, 0.68, 0.68, 0]
+MuDIS position info input= 3302.0 8407.0
+Generate  4  with DIS input  first event 0
+Calling addVMCFields
+ 
+Macro finished successfully.
+Output file is  ./sim_SBT_0.root
+Parameter file is  ./params_SBT_0.root
+Geometry file is  ./geo_SBT_0.root
+Real time  306.38538789749146  s, CPU time  63.120000000000005 s
+Successfully added DISCrossSection to the output file: ./sim_SBT_0.root
+[INFO]: Saving FileSummary
+[WARNING] No FileSummary in muonDis.root
+========================================================================
+Simulation finished successfully
+========================================================================
+Incoming muon's vetoPoints & UpstreamTaggerPoints inf missing in file, proceeding with modification
+File updated with incoming muon info as sim_SBT_0.root
++---------+-----------------------------+----------------------------+-------------------------+----------------------------+----------------------------+---------------------------+------------------------+---------------------------+
+|   Event |   Muon vetoPoints Available |   Original VetoPoint Count |   Muon vetoPoints Added |   Combined VetoPoint Count |   Muon UBTPoints Available |   Original UBTPoint Count |   Muon UBTPoints Added |   Combined UBTPoint Count |
++=========+=============================+============================+=========================+============================+============================+===========================+========================+===========================+
+|       0 |                          55 |                       2295 |                      17 |                       2312 |                          1 |                         0 |                      1 |                         1 |
++---------+-----------------------------+----------------------------+-------------------------+----------------------------+----------------------------+---------------------------+------------------------+---------------------------+
+|       1 |                          55 |                       3803 |                      24 |                       3827 |                          1 |                         0 |                      1 |                         1 |
++---------+-----------------------------+----------------------------+-------------------------+----------------------------+----------------------------+---------------------------+------------------------+---------------------------+
+|       2 |                          46 |                       1316 |                      46 |                       1362 |                          1 |                         0 |                      1 |                         1 |
++---------+-----------------------------+----------------------------+-------------------------+----------------------------+----------------------------+---------------------------+------------------------+---------------------------+
+|       3 |                          46 |                       1502 |                      46 |                       1548 |                          1 |                         0 |                      1 |                         1 |
++---------+-----------------------------+----------------------------+-------------------------+----------------------------+----------------------------+---------------------------+------------------------+---------------------------+
+
+ Step 3/3: Reconstruction using ShipReco.py
+==============================================================
+[INFO] Media file used: /eos/home-j/jaweiss/FairShip_latest/geometry/media.geo
+Creating field map called MainSpecMap using /eos/home-j/jaweiss/FairShip_latest/files/2026_09_28_SHiP_SpectrometerField_ECN3_MgB2.root
+[INFO] ShipBFieldMap::readMapFile() creating field MainSpecMap using file /eos/home-j/jaweiss/FairShip_latest/files/2026_09_28_SHiP_SpectrometerField_ECN3_MgB2.root
+[INFO] x limits: -500, 500, dx = 10
+[INFO] y limits: -500, 500, dy = 10
+[INFO] z limits: -750, 750, dz = 10
+[INFO] Offsets: x = 0, y = 0, z = 8957
+[INFO] Angles : phi = 0, theta = 0, psi = 0
+[INFO] Total number of bins = 1540351; Nx = 101, Ny = 101, Nz = 151
+Creating symmetric field map called muonShieldField using /eos/home-j/jaweiss/FairShip_latest/files/TRY_2026.root
+[INFO] ShipBFieldMap::readMapFile() creating field muonShieldField using file /eos/home-j/jaweiss/FairShip_latest/files/TRY_2026.root
+[INFO] x limits: 0, 219.922, dx = 1.99929
+[INFO] y limits: 0, 217.969, dy = 1.99971
+[INFO] z limits: -50, 3075, dz = 5
+[INFO] Offsets: x = 0, y = 0, z = 204
+[INFO] Angles : phi = 0, theta = 0, psi = 0
+[INFO] Total number of bins = 7643460; Nx = 111, Ny = 110, Nz = 626
+Adding field MainSpecMap
+Adding field muonShieldField
+Setting the Global field
+Adding field TotalField to Global
+The virtual MC pointer gMC is null! The global field can't be used by Geant4 but will work for track fitting and track extrapolation
+configured to process  999999  events from  sim_SBT_0.root  starting with event  0  with option Yheight =  None  with vertexing True  and pattern reco  AR
+Calling addVMCFields
+event  0
+Too large hits in the event!
+finished writing tree
+SUCCESS: /eos/user/j/jaweiss/MuonDIS/TRY6LiSc_test_latest/SBT/job_0

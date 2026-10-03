@@ -1,177 +1,115 @@
 #!/bin/bash
+set -eo pipefail
+
+# Step 1: muon DIS for the muons collected in step 0 (condor.sh).
+# Condor arguments (see submitscript_<SBT|Tr>.sub):
+#   $1 = EOSDIR         output dir, one job_<ProcId>/ per job (e.g. .../MuonDIS/TRY6LiSc/SBT)
+#   $2 = muonTupleFile  muonsProduction_wsoft_<SBT|Tr>.root from step 0
+#   $3 = ProcId         $(Process)
+#   $4 = MuonsPerJob
+#   $5 = DISPerMuon     must be even (half on p, half on n)
+# Steps whose output already exists in EOSDIR/job_<ProcId> are skipped, so resubmitting only redoes what is missing.
 
 EOSDIR=$1
 muonTupleFile=$2
 ProcId=$3
-MuonsPerJob=$4 
-DISPerMuon=$5 
-     
-firstEvent=$((ProcId*MuonsPerJob))
+MuonsPerJob=$4
+DISPerMuon=$5
 
-source /cvmfs/ship.cern.ch/24.10/setUp.sh 
-source /afs/cern.ch/user/a/anupamar/HTCondor/configfiles/config_ECN3_2024.sh #alienv load FairShip/latest-master-release > config_<version>.sh
-
-echo 'config sourced'
-
-
-mkdir -p "$EOSDIR/job_$ProcId"
-
+firstEvent=$((ProcId * MuonsPerJob))
+TAG="$(basename "$EOSDIR")_${ProcId}"   # e.g. SBT_42
 OUTPUTDIR="$EOSDIR/job_$ProcId"
 
-output_files=(
-    "$OUTPUTDIR/muonDis.root"
-    "$OUTPUTDIR/ship.conical.muonDIS-TGeant4.root"
-    "$OUTPUTDIR/ship.params.conical.muonDIS-TGeant4.root"
-    "$OUTPUTDIR/simulation_output.txt"
-    "$OUTPUTDIR/geofile_full.conical.muonDIS-TGeant4.root"
-    "$OUTPUTDIR/ship.conical.muonDIS-TGeant4_rec.root"
-)
+FAIRSHIP=/eos/user/j/jaweiss/FairShip_latest # EOS copy of the FairShip build commit 520342c48
+SCRIPTS=/afs/cern.ch/work/j/jaweiss/private/HTCondor_scripts/MuonDIS/fairship_muonDIS  # muonDIS helpers, fixed for ROOT 6.40
+export QT_QPA_PLATFORM=offscreen   # headless node: Geant4's Qt UI otherwise aborts with qFatal
+PIXI_RUN=(/afs/cern.ch/work/j/jaweiss/.pixi/bin/pixi run --frozen --manifest-path "$FAIRSHIP/pixi.toml")
+echo "Using FAIRSHIP=$FAIRSHIP (pixi env)"
 
-step1() {
+DIS_FILE="$OUTPUTDIR/muonDis_${TAG}.root"
+SIM_FILE="$OUTPUTDIR/sim_${TAG}.root"
+GEO_FILE="$OUTPUTDIR/geo_${TAG}.root"
+PARAMS_FILE="$OUTPUTDIR/params_${TAG}.root"
+REC_FILE="$OUTPUTDIR/reco_${TAG}.root"
 
-    echo 
-    echo "Generating DIS for muons hitting SBT / Tracking Station 1"
-    echo "============================================================================================================================"
-    echo
-
-    python "$FAIRSHIP/muonDIS/makeMuonDIS.py" --inputFile "$muonTupleFile" -i "$firstEvent" --nDIS "$DISPerMuon" --nEvents "$MuonsPerJob"
-
-    if [ $? -ne 0 ]; then
-        echo "ERROR: Step 1 failed. Exiting script."
-        exit 1
-    fi
-    echo "Copying files..."
-    xrdcp muonDis.root root://eospublic.cern.ch/"$OUTPUTDIR"/ 
-
-}
-
-step2() {
-
-    echo
-    echo "MuonDIS simulation using run_simScript.py"
-    echo "============================================================================================================================"
-    echo
-
-    python "$FAIRSHIP/macro/run_simScript.py" --MuDIS -f root://eospublic.cern.ch/"$OUTPUTDIR/muonDis.root" --firstEvent 0 --nEvents $((MuonsPerJob*DISPerMuon)) --helium | tee simulation_output.txt
-
-    echo
-    echo "MuDIS simulation done. Adding the original muon's SBT response to the simulation."
-    echo
-
-    python "$FAIRSHIP/muonDIS/add_muonresponse.py" -m root://eospublic.cern.ch/"$OUTPUTDIR/muonDis.root" -f "ship.conical.muonDIS-TGeant4.root"
-    
-    if [ $? -ne 0 ]; then
-        echo "ERROR: Step 2 failed. Exiting script."
-        exit 1
-    fi
-
-    echo "Copying files..."
-
-    xrdcp "ship.conical.muonDIS-TGeant4.root" root://eospublic.cern.ch/"$OUTPUTDIR"/
-    xrdcp "geofile_full.conical.muonDIS-TGeant4.root" root://eospublic.cern.ch/"$OUTPUTDIR"/
-    xrdcp "ship.params.conical.muonDIS-TGeant4.root" root://eospublic.cern.ch/"$OUTPUTDIR"/
-    xrdcp simulation_output.txt root://eospublic.cern.ch/"$OUTPUTDIR"/
-
-}
-
-step3() {
-
-    echo
-    echo "Reconstruction of the MuonDIS files"
-    echo "============================================================================================================================"
-    echo 
-
-    python "$FAIRSHIP/macro/ShipReco.py" -f root://eospublic.cern.ch/"$OUTPUTDIR/ship.conical.muonDIS-TGeant4.root" -g root://eospublic.cern.ch/"$OUTPUTDIR/geofile_full.conical.muonDIS-TGeant4.root"
-
-    if [ $? -ne 0 ]; then
-        echo "ERROR: Step 3 failed. Exiting script."
-        exit 1
-    fi
-
-    echo "Copying files..."
-    xrdcp "ship.conical.muonDIS-TGeant4_rec.root" root://eospublic.cern.ch/"$OUTPUTDIR"/ 
-
-}
-
-nothing_to_do=true
-SECONDS=0  # Reset timer
-
-echo
-if [ ! -f "${output_files[0]}" ]; then # Check if files for Step 1 are missing
-
-    nothing_to_do=false
-
-    echo "${output_files[0]} is missing, removing subsequent files if they exist and rerunning steps."
-    
-    for file in "${output_files[@]}"; do # Remove all subsequent files (from Step 1 to 3) if they exist
-        if [ -f "$file" ]; then
-            echo "Removing $file"
-            rm "$file"
-        fi
-    done
-    echo
-    echo "STEP 1/3:"
-    step1  # Run Step 1
-    echo "STEP 1/3: Completed"
-
+if [ -f "$REC_FILE" ]; then
+    echo "Nothing to do, $REC_FILE exists."
+    exit 0
 fi
 
-if [ "$nothing_to_do" = true ]; then
-    echo 'Skipping STEP 1/3; output files exist.'
+WORKDIR=$(mktemp -d)
+trap 'rm -rf "$WORKDIR"' EXIT
+cd "$WORKDIR"
+
+nMuons=$("${PIXI_RUN[@]}" python -c 'import sys, ROOT; f = ROOT.TFile.Open(sys.argv[1]); print(f["MuonAndSoftInteractions"].GetEntries())' "$muonTupleFile" 2>/dev/null | tail -1) \
+    || { echo "ERROR: cannot read MuonAndSoftInteractions from $muonTupleFile"; exit 1; }
+echo "$muonTupleFile: $nMuons muons, this job: muons $firstEvent - $((firstEvent + MuonsPerJob - 1)), $DISPerMuon DIS each"
+if [ "$firstEvent" -ge "$nMuons" ]; then
+    echo "firstEvent $firstEvent >= $nMuons muons in the nTuple, nothing to do."
+    exit 0
 fi
 
-echo "-----------------------------------------------------------------------------------------------Time taken $(echo "scale=2; $SECONDS / 60" | bc) minutes"
-SECONDS=0  # Reset timer
-echo
-for i in {1..4}; do # Check if any files from Step 2 files 2-4) are missing
-
-    if [ ! -f "${output_files[$i]}" ]; then
-
-        nothing_to_do=false
-
-        echo "${output_files[$i]} is missing, removing subsequent files if they exist and rerunning steps."
-        
-        for file in "${output_files[@]:1}"; do # Remove all subsequent files from Step 2 and Step 3, but only if they exist
-            if [ -f "$file" ]; then
-                echo "Removing $file"
-                rm "$file"
-            fi
-        done
-
-        echo
-        echo "STEP 2/3:"
-        step2  # Run Step 2
-        echo "STEP 2/3: Completed"
-
-        break  # Stop checking further once a missing file from Step 2 is found
-    fi
+# mkdir -p can race on EOS when all jobs of a cluster create the shared parent dir at once
+# ("File exists" despite -p), and EOS metadata can lag a beat; retry a few times before giving up.
+for attempt in 1 2 3 4 5; do
+    mkdir -p "$OUTPUTDIR" && break
+    [ -d "$OUTPUTDIR" ] && break
+    sleep 2
 done
+[ -d "$OUTPUTDIR" ] || { echo "ERROR: could not create $OUTPUTDIR"; exit 1; }
 
-if [ "$nothing_to_do" = true ]; then
-    echo 'Skipping STEP 2/3; output files exist.'
-fi
-echo "-----------------------------------------------------------------------------------------------Time taken $(echo "scale=2; $SECONDS / 60" | bc) minutes"
-SECONDS=0  # Reset timer
+redo=false
 
 echo
-if [ ! -f "${output_files[5]}" ]; then # Check if any file from Step 3 is missing ( just the final file)
-    
-    nothing_to_do=false
-    echo "${output_files[5]} is missing, rerunning Step 3."
-    
-    if [ -f "${output_files[5]}" ]; then # Remove only the Step 3 file if it exists
-        echo "Removing ${output_files[5]}"
-        rm  "${output_files[5]}"
-    fi
-    echo
-    echo "STEP 3/3:"
-    step3  # Rerun Step 3
-    echo "STEP 3/3: Completed"
+echo " Step 1/3: Generating DIS (Pythia6) for muons hitting the SBT / Tracking Station 1"
+echo "=============================================================="
+if [ -f "$DIS_FILE" ]; then
+    echo "$DIS_FILE exists, skipping."
+    cp "$DIS_FILE" muonDis.root
+else
+    redo=true
+    "${PIXI_RUN[@]}" python "$SCRIPTS/makeMuonDIS.py" -f "$muonTupleFile" -i "$firstEvent" -n "$MuonsPerJob" --nDIS "$DISPerMuon"
+    [ -f muonDis.root ] || { echo "ERROR: muonDis.root not produced"; exit 1; }
+    cp muonDis.root "$DIS_FILE"
 fi
 
-if [ "$nothing_to_do" = true ]; then
-    echo 'Skipping STEP 3/3; output files exist.'
+echo
+echo " Step 2/3: MuonDIS simulation using run_simScript.py + adding the incoming muon's SBT/UBT hits"
+echo "=============================================================="
+if [ "$redo" = false ] && [ -f "$SIM_FILE" ] && [ -f "$GEO_FILE" ] && [ -f "$PARAMS_FILE" ]; then
+    echo "$SIM_FILE, $GEO_FILE, $PARAMS_FILE exist, skipping."
+    cp "$SIM_FILE" "$GEO_FILE" .
+else
+    "${PIXI_RUN[@]}" python "$FAIRSHIP/macro/run_simScript.py" \
+        --MuDIS \
+        -f muonDis.root \
+        -i 0 \
+        -n $((MuonsPerJob * DISPerMuon)) \
+        --shieldName TRY_2026 \
+        --tag "$TAG" \
+        -o . | tee simRunOutput_1.txt
+
+    for f in "sim_${TAG}.root" "geo_${TAG}.root" "params_${TAG}.root"; do
+        [ -f "$f" ] || { echo "ERROR: $f not produced"; ls -lh; exit 1; }
+    done
+
+    "${PIXI_RUN[@]}" python "$SCRIPTS/add_muonresponse.py" -m muonDis.root -f "sim_${TAG}.root"
+
+    cp "sim_${TAG}.root"    "$SIM_FILE"
+    cp "geo_${TAG}.root"    "$GEO_FILE"
+    cp "params_${TAG}.root" "$PARAMS_FILE"
+    cp simRunOutput_1.txt   "$OUTPUTDIR"/
 fi
 
-echo "-----------------------------------------------------------------------------------------------Time taken $(echo "scale=2; $SECONDS / 60" | bc) minutes"
-SECONDS=0  # Reset timer
+echo
+echo " Step 3/3: Reconstruction using ShipReco.py"
+echo "=============================================================="
+"${PIXI_RUN[@]}" python "$FAIRSHIP/macro/ShipReco.py" \
+    -f "sim_${TAG}.root" \
+    -g "geo_${TAG}.root" | tee simRunOutput_2.txt
+
+[ -f "sim_${TAG}_rec.root" ] || { echo "ERROR: reco output not produced"; ls -lh; exit 1; }
+cp "sim_${TAG}_rec.root" "$REC_FILE"
+cp simRunOutput_2.txt    "$OUTPUTDIR"/
+
+echo "SUCCESS: $OUTPUTDIR"

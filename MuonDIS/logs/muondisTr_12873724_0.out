@@ -1,0 +1,3 @@
+Using FAIRSHIP=/eos/user/j/jaweiss/FairShip_latest (pixi env)
+/eos/user/j/jaweiss/MuonDIS/TRY6LiSc_test_latest/muonsProduction_wsoft_Tr.root: 0 muons, this job: muons 0 - 0, 2 DIS each
+firstEvent 0 >= 0 muons in the nTuple, nothing to do.
