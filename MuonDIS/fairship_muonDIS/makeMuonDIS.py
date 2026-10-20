@@ -11,7 +11,7 @@ import time
 from array import array
 
 import ROOT as r
-import muondis_compat as ut
+import rootUtils as ut
 from tabulate import tabulate
 
 r.gROOT.LoadMacro("$VMCWORKDIR/gconfig/basiclibs.C")

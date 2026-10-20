@@ -1,11 +1,99 @@
-000 (12877807.000.000) 10/03 19:12:18 Job submitted from host: <188.185.70.244:9618?addrs=188.185.70.244-9618+[2001-1458-d00-7--100-2ee]-9618&alias=bigbird10.cern.ch&noUDP&sock=schedd_1577350_7ae9>
-    [ DAGNodeName = "ntuple"; JobBatchName = "test_TRY6LiSc.dag+12877785" ]
+000 (12911409.000.000) 10/05 15:18:08 Job submitted from host: <188.185.70.244:9618?addrs=188.185.70.244-9618+[2001-1458-d00-7--100-2ee]-9618&alias=bigbird10.cern.ch&noUDP&sock=schedd_1577350_7ae9>
+    [ DAGNodeName = "ntuple"; JobBatchName = "test_TRY6LiSc.dag+12911408" ]
 ...
-001 (12877807.000.000) 10/03 19:13:00 Job executing on host: <128.142.162.109:9618?addrs=128.142.162.109-9618+[2001-1458-301-7d--100-26]-9618&alias=b9g42p2009.cern.ch&noUDP&sock=startd_3467_a6f0>
-	SlotName: slot1_6@b9g42p2009.cern.ch
-	CondorScratchDir = "/pool/condor/dir_1248565"
+001 (12911409.000.000) 10/05 15:19:31 Job executing on host: <128.142.162.27:9618?addrs=128.142.162.27-9618+[2001-1458-301-7b--100-14]-9618&alias=b9g42p1015.cern.ch&noUDP&sock=startd_2706_ab5d>
+	SlotName: slot1_11@b9g42p1015.cern.ch
+	CondorScratchDir = "/pool/condor/dir_705377"
 	Cpus = 2
-	Disk = 5245669
+	Disk = 5245594
 	GPUs = 0
 	Memory = 6000
+...
+005 (12911409.000.000) 10/05 15:39:17 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:13:55, Sys 0 00:00:19  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:13:55, Sys 0 00:00:19  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	238157  -  Run Bytes Sent By Job
+	2405  -  Run Bytes Received By Job
+	238157  -  Total Bytes Sent By Job
+	2405  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     0.75        2         2 
+	   Disk (KB)            :  3997     5242880   5245594 
+	   GPUs                 :                           0 
+	   Memory (MB)          :   341        6000      6000 
+	   TimeExecute (s)      :  1186                       
+	   TimeSlotBusy (s)     :  1189                       
+...
+035 (12911435.-01.000) 10/05 15:39:24 Cluster submitted from host: <188.185.70.244:9618?addrs=188.185.70.244-9618+[2001-1458-d00-7--100-2ee]-9618&alias=bigbird10.cern.ch&noUDP&sock=schedd_1577350_7ae9>
+    [ DAGNodeName = "sbt"; JobBatchName = "test_TRY6LiSc.dag+12911408" ]
+...
+000 (12911435.000.000) 10/05 15:39:24 Job submitted from host: <188.185.70.244:9618?addrs=188.185.70.244-9618+[2001-1458-d00-7--100-2ee]-9618&alias=bigbird10.cern.ch&noUDP&sock=schedd_1577350_7ae9>
+    [ DAGNodeName = "sbt"; JobBatchName = "test_TRY6LiSc.dag+12911408" ]
+...
+035 (12911436.-01.000) 10/05 15:39:24 Cluster submitted from host: <188.185.70.244:9618?addrs=188.185.70.244-9618+[2001-1458-d00-7--100-2ee]-9618&alias=bigbird10.cern.ch&noUDP&sock=schedd_1577350_7ae9>
+    [ DAGNodeName = "tr"; JobBatchName = "test_TRY6LiSc.dag+12911408" ]
+...
+000 (12911436.000.000) 10/05 15:39:24 Job submitted from host: <188.185.70.244:9618?addrs=188.185.70.244-9618+[2001-1458-d00-7--100-2ee]-9618&alias=bigbird10.cern.ch&noUDP&sock=schedd_1577350_7ae9>
+    [ DAGNodeName = "tr"; JobBatchName = "test_TRY6LiSc.dag+12911408" ]
+...
+001 (12911435.000.000) 10/05 15:39:25 Job executing on host: <128.142.162.27:9618?addrs=128.142.162.27-9618+[2001-1458-301-7b--100-14]-9618&alias=b9g42p1015.cern.ch&noUDP&sock=startd_2706_ab5d>
+	SlotName: slot1_11@b9g42p1015.cern.ch
+	CondorScratchDir = "/pool/condor/dir_719178"
+	Cpus = 2
+	Disk = 5244530
+	GPUs = 0
+	Memory = 6000
+...
+005 (12911435.000.000) 10/05 15:39:26 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	4443  -  Run Bytes Sent By Job
+	4533  -  Run Bytes Received By Job
+	4443  -  Total Bytes Sent By Job
+	4533  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :        0        2         2 
+	   Disk (KB)            :       35  5242880   5244530 
+	   GPUs                 :                           0 
+	   Memory (MB)          :        0     6000      6000 
+	   TimeExecute (s)      :        1                    
+	   TimeSlotBusy (s)     :        2                    
+...
+036 (12911435.-01.000) 10/05 15:39:26 Cluster removed
+	Materialized 1 jobs from 0 items.	Complete
+...
+001 (12911436.000.000) 10/05 15:39:27 Job executing on host: <128.142.162.27:9618?addrs=128.142.162.27-9618+[2001-1458-301-7b--100-14]-9618&alias=b9g42p1015.cern.ch&noUDP&sock=startd_2706_ab5d>
+	SlotName: slot1_11@b9g42p1015.cern.ch
+	CondorScratchDir = "/pool/condor/dir_719285"
+	Cpus = 2
+	Disk = 5244530
+	GPUs = 0
+	Memory = 6000
+...
+005 (12911436.000.000) 10/05 15:39:28 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	4441  -  Run Bytes Sent By Job
+	4533  -  Run Bytes Received By Job
+	4441  -  Total Bytes Sent By Job
+	4533  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :        0        2         2 
+	   Disk (KB)            :       34  5242880   5244530 
+	   GPUs                 :                           0 
+	   Memory (MB)          :        0     6000      6000 
+	   TimeExecute (s)      :        1                    
+	   TimeSlotBusy (s)     :        2                    
+...
+036 (12911436.-01.000) 10/05 15:39:28 Cluster removed
+	Materialized 1 jobs from 0 items.	Complete
 ...

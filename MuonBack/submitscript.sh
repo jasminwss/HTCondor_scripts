@@ -7,8 +7,8 @@ nEvents=$4
 ProcId=$5
 ClusterId=$6
 
-source /cvmfs/ship.cern.ch/25.01/setUp.sh #/cvmfs/ship.cern.ch/24.10/setUp.sh 
-source /afs/cern.ch/user/a/areghuna/config_ECN3_2024.sh #alienv load FairShip/latest-master-release > config_<version>.sh
+source /cvmfs/ship.cern.ch/26.03/setUp.sh #/cvmfs/ship.cern.ch/24.10/setUp.sh 
+source /afs/cern.ch/work/j/jaweiss/private/HTCondor_scripts/config_26.03.sh #alienv load FairShip/latest-master-release > config_<version>.sh
 
 echo 'config sourced'
 
@@ -39,6 +39,8 @@ step1() {
     xrdcp simulation_output.txt root://eospublic.cern.ch/"$OUTPUTDIR"/ &
     wait
 }
+# xdrp: copy from remote to EOS
+# wait: waiting for all copies to finish before going to step 2 
 
 step2() {
     echo 

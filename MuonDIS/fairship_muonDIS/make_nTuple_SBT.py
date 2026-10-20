@@ -10,7 +10,7 @@ import logging
 import os
 
 import ROOT as r
-import muondis_compat as ut
+import rootUtils as ut
 import shipunit as u
 from tabulate import tabulate
 

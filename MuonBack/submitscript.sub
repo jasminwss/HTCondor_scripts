@@ -1,6 +1,6 @@
 executable          	= submitscript.sh
 transfer_output_files 	= ""
-notify_user				= jasmin.weiss@hu-berlin.de
+notify_user				= jasmin.weiss@student.hu-berlin.de
 notification 			= Always
 
 arguments 		= /afs/cern.ch/work/j/jaweiss/private/bkg $(inputFile) $(startEvent) $(nEvents) $(Process) $(ClusterId) 
