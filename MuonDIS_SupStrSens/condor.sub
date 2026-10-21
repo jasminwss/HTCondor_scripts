@@ -1,0 +1,29 @@
+executable          	= condor.sh
+notify_user				= jasmin.weiss@student.hu-berlin.de
+notification 			= Error
+
+# MUONBACK_DIR = cluster folder of the MuonBack production (default: 30-job test, cluster 13045706).
+# For another production override it, e.g.
+#   condor_submit condor.sub MUONBACK_DIR=/eos/user/j/jaweiss/MuonBack/TRY6LiSc_SupStrSens/<cluster>
+# OUTDIR and NFOLDERS can be overridden the same way.
+arguments 		= $(MUONBACK_DIR:/eos/user/j/jaweiss/MuonBack/TRY6LiSc_SupStrSens/13045706) $(OUTDIR:/eos/user/j/jaweiss/MuonDIS/TRY6LiSc_SupStrSens) $(NFOLDERS:0)
+
+##############################################################################################################
+error 					= logs/ntuple_$(Cluster).err
+log 					= logs/ntuple_$(Cluster).log
+output					= logs/ntuple_$(Cluster).out
+##############################################################################################################
+
+request_CPUs   = 1
+request_memory = 4 GB
+request_disk   = 5 GB
+
+on_exit_remove   		= (ExitBySignal == False) && (ExitCode == 0)
+max_retries      		= 3
+requirements     		= (OpSysAndVer =?= "AlmaLinux9") && (Machine =!= LastRemoteHost)
++REQUIRED_OS 			= "AlmaLinux9"
+
+##############################################################################################################
++JobFlavour="testmatch"
+##############################################################################################################
+queue
